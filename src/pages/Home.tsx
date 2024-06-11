@@ -77,7 +77,7 @@ const Home: React.FC = () => {
           className="p-20 mt-[30rem] lg:mb-[9rem] flex items-start lg:items-start justify-end absolute font-bold text-white lg:text-9xl text-8xl z-[4] lg:z-[4] h-screen w-full"
           style={{ translateY: useTransform(useScroll().scrollYProgress, [0, 1], [0, 200]) }}
         >
-          COLI
+          COLIN
         </motion.div>
         <motion.div
           className="p-20 mb-[3rem] lg:mt-[40rem] flex items-center lg:items-start justify-end font-bold text-white text-4xl z-[4] lg:z-[4] h-screen w-full"
