@@ -12,11 +12,12 @@ interface LayerProps {
   speed: number
   image: string
   zIndex: number
+  reverse?: boolean
 }
 
-const Layer: React.FC<LayerProps> = ({ speed, image, zIndex }) => {
+const Layer: React.FC<LayerProps> = ({ speed, image, zIndex, reverse = false }) => {
   const { scrollYProgress } = useScroll()
-  const y = useTransform(scrollYProgress, [0, 1], [0, -500 * speed])
+  const y = useTransform(scrollYProgress, [0, 1], [0, reverse ? 500 * speed : -500 * speed])
 
   return (
     <motion.div
@@ -46,9 +47,9 @@ const LayerFront: React.FC<LayerProps> = ({ speed, image, zIndex }) => {
   )
 }
 
-const BackgroundLayer: React.FC<{ speed: number }> = ({ speed, reverse }) => {
+const BackgroundLayer: React.FC<{ speed: number }> = ({ speed }) => {
   const { scrollYProgress } = useScroll()
-  const y = useTransform(scrollYProgress, [0, 1], [0, reverse ? 500 : -500 * speed])
+  const y = useTransform(scrollYProgress, [0, 1], [0, -500 * speed])
 
   return (
     <motion.div
@@ -66,25 +67,29 @@ const Home: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null)
 
   return (
-    <div ref={ref} className="w-full h-[300vh] overflow-hidden bg-black">
+    <div ref={ref} className="w-full h-[300vh] overflow-hidden bg-black relative">
       <Layer speed={2} image={backBIG} zIndex={2} />
       <Layer speed={3} image={middleBIG} zIndex={5} />
-      <Layer reverse speed={5} image={flyingBIG} zIndex={6} />
+      <Layer speed={5} image={flyingBIG} zIndex={6} />
       <LayerFront speed={8} image={frontBig} zIndex={7} />
 
-      <div className="absolute inset-0 flex items-center justify-center">
-        <motion.div
-          className="p-20 mt-[30rem] lg:mb-[9rem] flex items-start lg:items-start justify-end absolute font-bold text-white lg:text-9xl text-8xl z-[4] lg:z-[4] h-screen w-full"
-          style={{ translateY: useTransform(useScroll().scrollYProgress, [0, 1], [0, 200]) }}
-        >
-          COLI
-        </motion.div>
-        <motion.div
-          className="p-20 mb-[3rem] lg:mt-[40rem] flex items-center lg:items-start justify-end font-bold text-white text-4xl z-[4] lg:z-[4] h-screen w-full"
-          style={{ translateY: useTransform(useScroll().scrollYProgress, [0, 1], [0, 400]) }}
-        >
-          CHAMPDAVOINE
-        </motion.div>
+      <div className="absolute inset-0 grid md:grid-cols-2 md:grid-rows-1 grid-rows-2 z-[4] h-screen">
+        <div className="col-start-2  row-start-1 flex items-end md:items-center  justify-center">
+          <motion.div
+            className="p-14 font-bold text-white text-8xl md:text-9xl "
+            style={{ translateY: useTransform(useScroll().scrollYProgress, [0, 1], [0, 200]) }}
+          >
+            COLIN
+          </motion.div>
+        </div>
+        <div className="mt-40 col-start-2 row-start-1 flex items-end md:items-center  justify-center">
+          <motion.div
+            className="md:p-14 font-bold text-white text-4xl "
+            style={{ translateY: useTransform(useScroll().scrollYProgress, [0, 1], [0, 400]) }}
+          >
+            CHAMPDAVOINE
+          </motion.div>
+        </div>
       </div>
       <BackgroundLayer speed={0.1} />
     </div>
