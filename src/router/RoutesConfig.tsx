@@ -2,6 +2,7 @@ import React from 'react'
 
 import Home from '../pages/Home'
 import HowlMoving from '../pages/HowlMoving'
+import Kiki from '../pages/Kiki'
 
 interface Route {
   name: string
@@ -23,6 +24,12 @@ export const routesConfig: Route[] = [
     name: 'home',
     path: '/howl',
     component: <HowlMoving />,
+    hasFooter: true
+  },
+  {
+    name: 'home',
+    path: '/kiki',
+    component: <Kiki />,
     hasFooter: true
   }
 ]
