@@ -19,11 +19,11 @@ interface LayerProps {
 
 const Layer: React.FC<LayerProps> = ({ speed, image, zIndex, reverse = false }) => {
   const { scrollYProgress } = useScroll()
-  const y = useTransform(scrollYProgress, [0, 1], [0, reverse ? 500 * speed : -500 * speed])
+  const y = useTransform(scrollYProgress, [0, 1], [0, reverse ? 100 * speed : -100 * speed])
 
   return (
     <motion.div
-      className="absolute inset-0 h-[100dvh] bg-cover bg-center"
+      className="absolute inset-0 h-[200dvh] bg-cover bg-center"
       style={{
         y,
         backgroundImage: `url(${image})`,
@@ -53,7 +53,7 @@ const Kiki: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null)
 
   return (
-    <div ref={ref} className="w-full h-[150dvh] overflow-hidden bg-black relative">
+    <div ref={ref} className="w-full h-[200dvh] overflow-hidden bg-black relative">
       <Layer speed={1} image={backBIG} zIndex={2} />
       <Layer speed={6} image={five} zIndex={4} />
       <Layer speed={7} image={four} zIndex={4} />

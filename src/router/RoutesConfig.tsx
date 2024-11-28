@@ -1,5 +1,4 @@
-import React from 'react'
-
+import Crypto from '../pages/Crypto'
 import Home from '../pages/Home'
 import HowlMoving from '../pages/HowlMoving'
 import Kiki from '../pages/Kiki'
@@ -31,5 +30,10 @@ export const routesConfig: Route[] = [
     path: '/kiki',
     component: <Kiki />,
     hasFooter: true
+  },
+  {
+    name: 'crypto',
+    path: 'crypto',
+    component: <Crypto />
   }
 ]

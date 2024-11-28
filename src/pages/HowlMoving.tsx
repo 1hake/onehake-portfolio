@@ -16,7 +16,7 @@ interface LayerProps {
 
 const Layer: React.FC<LayerProps> = ({ speed, image, zIndex, reverse = false }) => {
   const { scrollYProgress } = useScroll()
-  const y = useTransform(scrollYProgress, [0, 1], [0, reverse ? 500 * speed : -500 * speed])
+  const y = useTransform(scrollYProgress, [0, 1], [0, reverse ? 100 * speed : -100 * speed])
 
   return (
     <motion.div
@@ -66,10 +66,10 @@ const HowlMoving: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null)
 
   return (
-    <div ref={ref} className="w-full h-[300vh] overflow-hidden bg-black relative">
+    <div ref={ref} className="w-full h-[200vh] overflow-hidden bg-black relative">
       <Layer speed={2} image={backBIG} zIndex={2} />
       <Layer speed={5} image={middleBIG} zIndex={5} />
-      <LayerFront speed={8} image={frontBig} zIndex={7} />
+      <Layer speed={8} image={frontBig} zIndex={7} />
 
       <div className="absolute inset-0 grid md:grid-cols-2 md:grid-rows-1 grid-rows-2 z-[4] h-screen">
         <div className="col-start-2  row-start-1 flex items-end md:items-center  justify-center">
